@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; }
+        .success{
+            display: none;
+        }
+        .failure{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="login col-sm-6 col-sm-offset-3">
+
+    <h1><span class="fa fa-sign-in"></span> Login</h1>
+
+    
+
+    <!-- LOGIN FORM -->
+            <label>Email</label>
+            <input type="text" class="form-control" name="email" id="email">
+            <label>Verification Code</label>
+            <input type="text" class="form-control" name="code" id="code">
+        <button type="submit" id="submit" class="btn btn-warning btn-lg" >Verify</button>
+    <hr>
+
+    <p>Need an account? <a href="/signup">Signup</a></p>
+    <p>Or go <a href="/">home</a>.</p>
+
+    <div class="text-center">
+        <p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
+        <p>Visit the <a href="http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local">tutorial</a>.</p>
+    </div>
+
+</div>
+<div class="success">
+    <p>Your verification is successfully done. Please head over to <a href="/login">here</a></p>
+</div>
+<div class="failure">
+    <p>Wrong OTP.Please try again <a href="/register">here</a></p>
+</div>
+</div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    
+    $(function(){
+                $('body').on('click','#submit',function(){
+            var email = document.getElementById("email").value;
+            var code = document.getElementById("code").value;
+            console.log(email);
+            var obj = {
+                'email' : email,
+                'token' : code
+            }
+            $.ajax({
+                url : '/verification',
+                method : 'put',
+                data : {'email' : email,'token' : code},
+                success : function(response){
+                    console.log(response);
+                    if(response === true)
+                    {       
+                        $(".login").hide();
+                        $(".success").show();
+                    }
+                    else
+                    {
+                        $(".login").hide();
+                        $(".failure").show();
+                    }
+                }
+                
+            });
+        })
+            });
+</script>
+</html>

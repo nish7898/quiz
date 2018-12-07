@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well" id="create-quiz-panel">
+                <button class="btn btn-default btn-sm" id="create-quiz">Create a Quiz</button>
+                <div>
+                    <br>
+                    <h3>Enter the name of Quiz</h3><br>
+                    <input id="quiz-name" class="form-control">
+                </div>
+                <br>
+                <div>
+                    <button class="btn btn-default btn-sm" id="enter-question">Enter Questions</button>
+                </div>
+                <br>
+                <div>
+                    <input id="ques" class="form-control" placeholder="Enter your question">
+                    <br>
+                    <input id="opt-1" class="form-control" placeholder="Enter the option">
+                    <br>
+                    <input id="opt-2" class="form-control" placeholder="Enter the option">
+                    <br>
+                    <input id="opt-3" class="form-control" placeholder="Enter the option">
+                    <br>
+                    <input id="opt-4" class="form-control" placeholder="Enter the option">
+                    <br>
+                    <input id="answer" class="form-control" placeholder="Enter the correct option (1/2/3/4)">
+                    <br>
+                    <button id="add-question">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="well">
+                <button class="btn btn-default btn-sm" id="join-quiz">Join a Quiz</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+    </div>
+        
+
+    </div>
+
+
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script>
+    var myArray = new Array();
+    $(function(){
+        $('body').on('click','#create-quiz',function(){
+            console.log("Hi");
+        })
+        .on('click','#add-question',function(){
+
+            var obj = {
+                 ques : document.getElementById("ques").value,
+                 opt1 : document.getElementById("opt-1").value,
+                 opt2 : document.getElementById("opt-2").value,
+                 opt3 : document.getElementById("opt-3").value,
+                 opt4 : document.getElementById("opt-4").value,
+                 ans : document.getElementById("answer").value
+            };
+            console.log(obj);
+        })
+    })
+</script>
+</body>
+</html>
